@@ -44,6 +44,16 @@ public class JwtAuthController {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
+    @GetMapping(value = "/home")
+    public ResponseEntity<String> getHome(){
+        return ResponseEntity.ok("Public API");
+    }
+
+    @GetMapping(value = "/profile")
+    public ResponseEntity<String> getProfile(){
+        return ResponseEntity.ok("User Profile");
+    }
+
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
