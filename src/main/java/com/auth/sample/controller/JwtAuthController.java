@@ -16,23 +16,22 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin
 public class JwtAuthController {
 
+    private static final Logger log = LoggerFactory.getLogger(JwtAuthController.class);
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    private static final Logger log = LoggerFactory.getLogger(JwtAuthController.class);
-
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@Valid @RequestBody JwtRequest authenticationRequest) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
@@ -44,18 +43,18 @@ public class JwtAuthController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserAuth user) throws Exception {
+    public ResponseEntity<?> saveUser(@Valid @RequestBody UserAuth user) throws Exception {
         log.debug("Initiating registration of new user with username " + user.getUsername());
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
     @GetMapping(value = "/home")
-    public ResponseEntity<String> getHome(){
+    public ResponseEntity<String> getHome() {
         return ResponseEntity.ok("Public API");
     }
 
     @GetMapping(value = "/profile")
-    public ResponseEntity<String> getProfile(){
+    public ResponseEntity<String> getProfile() {
         return ResponseEntity.ok("User Profile");
     }
 

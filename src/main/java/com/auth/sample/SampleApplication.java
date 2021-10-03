@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SampleApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(SampleApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(SampleApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(SampleApplication.class, args);
-		log.info("Started Sample Auth App");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SampleApplication.class, args);
+        log.info("Started Sample Auth App");
+    }
 
 }
