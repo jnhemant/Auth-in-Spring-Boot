@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable()
-                // dont authenticate this particular request
+                // don't authenticate requests mentioned in antMatchers
                 .authorizeRequests().antMatchers("/authenticate", "/register", "/home").permitAll().
                 // all other requests need to be authenticated
                         anyRequest().authenticated().and().
