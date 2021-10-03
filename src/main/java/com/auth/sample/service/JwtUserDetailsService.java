@@ -21,6 +21,12 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
+    /**
+     * Fetch user details from DB using username
+     * @param username username of user
+     * @return UserDetails fetched from DB
+     * @throws UsernameNotFoundException exception may occur in case username if not found in DB
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserModel userModel = userDao.findByUsername(username);
@@ -31,6 +37,11 @@ public class JwtUserDetailsService implements UserDetailsService {
                 new ArrayList<>());
     }
 
+    /**
+     * Save current user in DB
+     * @param user details of user like username, password
+     * @return created UserModel object
+     */
     public UserModel save(UserAuth user) {
         UserModel userModel = new UserModel();
         userModel.setUsername(user.getUsername());
