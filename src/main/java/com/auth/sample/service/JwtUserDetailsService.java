@@ -3,6 +3,8 @@ package com.auth.sample.service;
 import com.auth.sample.dao.UserDao;
 import com.auth.sample.model.UserAuth;
 import com.auth.sample.model.UserModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
